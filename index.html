@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suprema Corte | RubinOT</title>
+    <meta name="description" content="Guild de elite do RubinOT. Três guerreiros, uma irmandade inabalável.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./imagens/icon_guild.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./imagens/icon_guild.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./imagens/icon_guild.png">
+    <link rel="shortcut icon" href="./imagens/icon_guild.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #e91e63;
+            --secondary: #9c27b0;
+            --accent: #00ffff;
+            --gold: #ffd700;
+            --dark: #0a0a0f;
+            --dark-alt: #13131a;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(233, 30, 99, 0.3);
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a0a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(233, 30, 99, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(156, 39, 176, 0.15) 0%, transparent 50%);
+            animation: pulseGlow 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .hero-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(233, 30, 99, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(233, 30, 99, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridScroll 20s linear infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes gridScroll {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1200px;
+            padding: 0 40px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(233, 30, 99, 0.2);
+            border: 2px solid var(--primary);
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent) 50%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 80px rgba(233, 30, 99, 0.5);
+            animation: fadeInUp 1s ease 0.2s both;
+            letter-spacing: clamp(3px, 1vw, 10px);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease 0.4s both;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .hero-quote {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-style: italic;
+            color: var(--gold);
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+        
+        .btn {
+            padding: 18px 45px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.6);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-15px); }
+        }
+        
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--accent);
+            filter: drop-shadow(0 0 10px var(--accent));
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 40px;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-label {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            letter-spacing: 5px;
+            background: linear-gradient(135deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+        
+        .section-divider {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            margin: 0 auto;
+        }
+        
+        /* Members Section */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+            gap: 40px;
+            align-items: start;
+        }
+        
+        .member-card {
+            position: relative;
+            background: linear-gradient(135deg, rgba(10, 10, 15, 0.9), rgba(19, 19, 26, 0.9));
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .member-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            background-size: 200% 100%;
+            animation: gradientSlide 3s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        @keyframes gradientSlide {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+        
+        .member-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(233, 30, 99, 0.3), transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+        
+        .member-card:hover::before {
+            opacity: 1;
+        }
+        
+        .member-card:hover::after {
+            width: 600px;
+            height: 600px;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 
+                0 25px 70px rgba(233, 30, 99, 0.4),
+                0 10px 30px rgba(156, 39, 176, 0.3),
+                inset 0 0 80px rgba(233, 30, 99, 0.1);
+        }
+        
+        .member-header {
+            position: relative;
+            z-index: 1;
+            padding: 40px 30px 30px;
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.15), rgba(156, 39, 176, 0.1));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .member-avatar-wrapper {
+            position: relative;
+            width: fit-content;
+            margin-bottom: 20px;
+        }
+        
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 17px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .member-avatar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: avatarShine 3s ease infinite;
+        }
+        
+        @keyframes avatarShine {
+            0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .member-avatar-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, var(--primary), transparent 70%);
+            border-radius: 20px;
+            opacity: 0.5;
+            filter: blur(20px);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+        
+        .member-rank {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+            font-weight: 700;
+            padding: 6px 16px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        .member-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+            line-height: 1.2;
+            word-wrap: break-word;
+        }
+        
+        .member-body {
+            position: relative;
+            z-index: 1;
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .member-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+            flex: 1;
+        }
+        
+        .stat-item {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 18px 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            background: rgba(233, 30, 99, 0.1);
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+        
+        .stat-item:hover::before {
+            opacity: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+        
+        .stat-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--accent), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            word-wrap: break-word;
+            line-height: 1.2;
+        }
+        
+        .member-stand {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.2), rgba(156, 39, 176, 0.2));
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .member-stand::before {
+            content: '「 」';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.03);
+            font-family: 'Bebas Neue', sans-serif;
+            pointer-events: none;
+        }
+        
+        .stand-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        
+        .stand-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, var(--gold), #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+            line-height: 1.2;
+        }
+        
+        /* Menacing Effect */
+        .menacing-container {
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .menacing {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            color: var(--primary);
+            text-shadow: 0 0 30px var(--primary);
+            animation: menacing 1.5s ease-in-out infinite;
+            letter-spacing: clamp(10px, 3vw, 20px);
+            display: inline-block;
+        }
+        
+        @keyframes menacing {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.15); opacity: 1; }
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-text {
+            font-size: clamp(1.1rem, 2vw, 1.2rem);
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .about-text p {
+            margin-bottom: 25px;
+        }
+        
+        .about-text strong {
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        .about-highlight {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.1), rgba(156, 39, 176, 0.1));
+            border-left: 4px solid var(--primary);
+            padding: 30px;
+            border-radius: 10px;
+            font-family: 'Cinzel', serif;
+            font-style: italic;
+            font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+            line-height: 1.8;
+            color: var(--gold);
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+            gap: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.1), rgba(156, 39, 176, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(233, 30, 99, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .stat-card:hover::before {
+            opacity: 1;
+            animation: rotate 4s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.3);
+        }
+        
+        .stat-icon {
+            font-size: clamp(2.5rem, 5vw, 3rem);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 6vw, 4rem);
+            background: linear-gradient(135deg, var(--accent), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-card-label {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.7);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Recruitment Section */
+        .recruitment-box {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.15), rgba(156, 39, 176, 0.15));
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .recruitment-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(233, 30, 99, 0.1), transparent);
+            animation: rotate 20s linear infinite;
+        }
+        
+        .recruitment-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .recruitment-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+        
+        .recruitment-text {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .recruitment-quote {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            font-style: italic;
+            color: var(--gold);
+            margin-top: 40px;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 40px 40px;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .footer-bottom p {
+            margin-bottom: 10px;
+        }
+        
+        .footer-slogan {
+            font-family: 'Cinzel', serif;
+            font-style: italic;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .nav-container {
+                padding: 0 20px;
+            }
+            
+            .nav-logo {
+                font-size: 1.5rem;
+            }
+            
+            .hero {
+                min-height: 500px;
+            }
+            
+            .hero-content {
+                padding: 0 20px;
+            }
+            
+            .hero-badge {
+                font-size: 0.7rem;
+                padding: 8px 20px;
+            }
+            
+            .container {
+                padding: 80px 20px;
+            }
+            
+            .section-header {
+                margin-bottom: 50px;
+            }
+            
+            .btn {
+                padding: 16px 35px;
+                font-size: 1rem;
+            }
+            
+            .members-grid {
+                gap: 25px;
+            }
+            
+            .member-header {
+                padding: 30px 25px 25px;
+            }
+            
+            .member-body {
+                padding: 25px;
+            }
+            
+            .member-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+            
+            .member-avatar-glow {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .member-stats {
+                gap: 10px;
+            }
+            
+            .stat-item {
+                padding: 15px 12px;
+            }
+            
+            .member-stand {
+                padding: 20px 15px;
+            }
+            
+            .about-content {
+                gap: 40px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .recruitment-box {
+                padding: 40px 25px;
+            }
+            
+            footer {
+                padding: 40px 20px 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-badge {
+                font-size: 0.65rem;
+                padding: 6px 15px;
+                letter-spacing: 2px;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+                font-size: 0.95rem;
+                letter-spacing: 1.5px;
+            }
+            
+            .member-header {
+                padding: 25px 20px 20px;
+            }
+            
+            .member-body {
+                padding: 20px;
+            }
+            
+            .member-avatar {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+                border-radius: 15px;
+            }
+            
+            .member-avatar-glow {
+                width: 90px;
+                height: 90px;
+                border-radius: 15px;
+            }
+            
+            .member-rank {
+                font-size: 0.7rem;
+                padding: 5px 12px;
+                letter-spacing: 1.5px;
+            }
+            
+            .member-stats {
+                gap: 8px;
+            }
+            
+            .stat-item {
+                padding: 12px 10px;
+            }
+            
+            .member-stand {
+                padding: 18px 12px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .stat-card {
+                padding: 30px 15px;
+            }
+            
+            .recruitment-box {
+                padding: 35px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">SUPREMA CORTE</div>
+            <ul class="nav-links">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#warriors">Guerreiros</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#stats">Estatísticas</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-grid"></div>
+        <div class="hero-content">
+            <div class="hero-badge">Elite Guild • RubinOT</div>
+            <h1 class="hero-title">SUPREMA CORTE</h1>
+            <p class="hero-subtitle">Três Guerreiros. Um Destino.</p>
+            <p class="hero-quote">"Ao longo dos séculos, existiram homens que deram os primeiros passos em novos caminhos, armados apenas com sua própria visão."</p>
+            <div class="hero-cta">
+                <a href="#warriors" class="btn btn-primary">Conheça os Guerreiros</a>
+                <a href="#about" class="btn btn-secondary">Nossa História</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section class="container" id="warriors">
+        <div class="section-header">
+            <div class="section-label">Os Lendários</div>
+            <h2 class="section-title">OS GUERREIROS</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="members-grid">
+            <div class="member-card">
+                <div class="member-header">
+                    <div class="member-avatar-wrapper">
+                        <div class="member-avatar-glow"></div>
+                        <div class="member-avatar">
+                            <img src="./imagens/leo_icon.gif" alt="Howard Roark">
+                        </div>
+                    </div>
+                    <div class="member-rank">⭐ Magistrado</div>
+                    <h3 class="member-name">Howard Roark</h3>
+                </div>
+                <div class="member-body">
+                    <div class="member-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">Level</div>
+                            <div class="stat-value">618</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Vocação</div>
+                            <div class="stat-value">Exalted Monk</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Skill</div>
+                            <div class="stat-value">113</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Especialização</div>
+                            <div class="stat-value">Fist</div>
+                        </div>
+                    </div>
+                    <div class="member-stand">
+                        <div class="stand-label">Stand Power</div>
+                        <div class="stand-name">Gold Experience</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="member-card">
+                <div class="member-header">
+                    <div class="member-avatar-wrapper">
+                        <div class="member-avatar-glow"></div>
+                        <div class="member-avatar">
+                            <img src="./imagens/mt_icon.gif" alt="Zeedh">
+                        </div>
+                    </div>
+                    <div class="member-rank">⭐ Magistrado</div>
+                    <h3 class="member-name">Zeedh</h3>
+                </div>
+                <div class="member-body">
+                    <div class="member-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">Level</div>
+                            <div class="stat-value">420</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Vocação</div>
+                            <div class="stat-value">Elite Knight</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Skill</div>
+                            <div class="stat-value">107</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Especialização</div>
+                            <div class="stat-value">Axe</div>
+                        </div>
+                    </div>
+                    <div class="member-stand">
+                        <div class="stand-label">Stand Power</div>
+                        <div class="stand-name">D4C</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="member-card">
+                <div class="member-header">
+                    <div class="member-avatar-wrapper">
+                        <div class="member-avatar-glow"></div>
+                        <div class="member-avatar">
+                            <img src="./imagens/gugu_icon.gif" alt="Cozendey">
+                        </div>
+                    </div>
+                    <div class="member-rank">⭐ Magistrado</div>
+                    <h3 class="member-name">Cozendey</h3>
+                </div>
+                <div class="member-body">
+                    <div class="member-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">Level</div>
+                            <div class="stat-value">678</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Vocação</div>
+                            <div class="stat-value">Royal Paladin</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Skill</div>
+                            <div class="stat-value">121</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Especialização</div>
+                            <div class="stat-value">Distance</div>
+                        </div>
+                    </div>
+                    <div class="member-stand">
+                        <div class="stand-label">Stand Power</div>
+                        <div class="stand-name">CRAZY DIAMOND</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menacing Divider -->
+    <div class="menacing-container">
+        <div class="menacing">最高裁判所</div>
+    </div>
+
+    <!-- About Section -->
+    <section class="container" id="about">
+        <div class="section-header">
+            <div class="section-label">Nossa História</div>
+            <h2 class="section-title">SOBRE A GUILD</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="about-content">
+            <div class="about-text">
+                <p><strong>A Suprema Corte</strong> não é apenas uma guild — é uma irmandade nascida do caos das batalhas escolares e forjada na lealdade inquebránvel de três guerreiros. Nossa força não está nos números, mas no elo que o tempo não conseguiu quebrar.</p>
+                
+                <p>Inspirados pela ousadia e pelo espírito indomável de <strong>JoJo's Bizarre Adventure</strong>, encaramos cada confronto com honra, estratégia e estilo. Cada vitória é uma obra de arte. Cada derrota, apenas o prelúdio de um novo <strong>"TO BE CONTINUED..."</strong></p>
+                
+                <p>Não buscamos guerra, mas também não recuamos dela. Respeito é dado, mas se vier testar, vai cair sabendo por quê.</p>
+            </div>
+
+            <div class="about-highlight">
+                "Pela honra que nos uniu, pela chama que nunca se apaga — lutamos, vencemos e permanecemos como um só."
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="container" id="stats">
+        <div class="section-header">
+            <div class="section-label">Conquistas</div>
+            <h2 class="section-title">STAND STATS</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-number">03</div>
+                <div class="stat-card-label">Membros de Elite</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">👑</div>
+                <div class="stat-number">S+</div>
+                <div class="stat-card-label">Tier Guild</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-number">∞</div>
+                <div class="stat-card-label">Amizade</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">💀</div>
+                <div class="stat-number">100+</div>
+                <div class="stat-card-label">Bosses Derrotados</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-number">15</div>
+                <div class="stat-card-label">Total de Kills</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menacing Divider -->
+    <div class="menacing-container">
+        <div class="menacing">最高裁判所</div>
+    </div>
+
+    <!-- Recruitment Section -->
+    <section class="container">
+        <div class="section-header">
+            <div class="section-label">Recrutamento</div>
+            <h2 class="section-title">JUNTE-SE A NÓS?</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="recruitment-box">
+            <div class="recruitment-content">
+                <h3 class="recruitment-title">A SUPREMA CORTE NÃO RECRUTA</h3>
+                <p class="recruitment-text">
+                    Somos três amigos unidos por laços que vão além do jogo. Nossa força vem da amizade genuína, da confiança absoluta e da sintonia perfeita em cada batalha. 
+                    <br><br>
+                    Esta não é apenas uma guild — é uma família. E algumas coisas não podem ser recrutadas, apenas vividas.
+                </p>
+                <div class="recruitment-quote">
+                    "O verdadeiro poder não está nos números, mas nos laços inquebráveis."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Suprema Corte</h3>
+                <p>Uma guild de elite no RubinOT, formada por três amigos que compartilham a paixão por batalhas épicas, estratégias impecáveis e a estética inconfundível de JoJo's Bizarre Adventure.</p>
+                <p style="margin-top: 20px; color: var(--accent);">RubinOT • Servidor Premium</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#warriors">Guerreiros</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#stats">Estatísticas</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <ul class="footer-links">
+                    <li><a href="https://discord.gg/hd7rsE6Gfn">Discord Server</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Suprema Corte | Todos os direitos reservados</p>
+            <p class="footer-slogan">「 STAND PROUD 」</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll indicator click
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        if (scrollIndicator) {
+            scrollIndicator.addEventListener('click', () => {
+                window.scrollTo({
+                    top: window.innerHeight,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Parallax effect on hero (only on desktop)
+        if (window.innerWidth > 768) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                if (hero && scrolled < window.innerHeight) {
+                    hero.style.transform = `translateY(${scrolled * 0.4}px)`;
+                }
+            });
+        }
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections and cards
+        document.querySelectorAll('.member-card, .stat-card, .about-content').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Performance optimization: disable animations on mobile
+        if (window.innerWidth <= 768) {
+            document.querySelectorAll('.member-card, .stat-card').forEach(el => {
+                el.style.transition = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
